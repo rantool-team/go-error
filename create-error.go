@@ -1,6 +1,9 @@
 package goerror
 
-import errorstruct "github.com/rantool-team/go-error/error-struct"
+import (
+	errorstruct "github.com/rantool-team/go-error/error-struct"
+	"github.com/rantool-team/go-error/language"
+)
 
 func CreateError(messageInEnglish string, description string) Error {
 	errorstruct.AddStatusCodeMultiples(StatusCodeNames)
@@ -9,6 +12,8 @@ func CreateError(messageInEnglish string, description string) Error {
 		Message:     messageInEnglish,
 		Description: description,
 	}
+
+	err.SetLanguage(language.DefaultLanguage)
 
 	err.EnableError()
 

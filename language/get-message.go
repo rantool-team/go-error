@@ -1,11 +1,35 @@
 package language
 
+import "fmt"
+
 func (m MessageSet) GetMessage(languageName string) string {
+	if !m.HasThisLanguage(languageName) {
+		panicBecuseNotExistLanguage(languageName)
+	}
+
 	languageId, ok := getLanguageIotaAndReturnIfHasPredefinedLanguage(languageName)
 	if ok {
 		return m.getMessageOnId(languageId)
 	}
 	return m.getInAnotherLanguages(languageName)
+}
+
+func (m MessageSet) HasThisLanguage(languageName string) bool {
+	if _, exists := getLanguageIotaAndReturnIfHasPredefinedLanguage(languageName); exists {
+		return true
+	}
+
+	if m.OtherLanguages != nil {
+		return false
+	}
+
+	_, ok := m.OtherLanguages[languageName]
+
+	return ok
+}
+
+func panicBecuseNotExistLanguage(languageName string) {
+	panic(fmt.Sprintf("Error: The language %q don't exists", languageName))
 }
 
 func (m MessageSet) getMessageOnId(id Language) string {
@@ -52,18 +76,18 @@ func (m MessageSet) getMessageOnId(id Language) string {
 		return m.Vietnamese
 	}
 
-	return m.GetMessage(defaultLanguage)
+	return m.GetMessage(DefaultLanguage)
 }
 
 func (m MessageSet) getInAnotherLanguages(name string) string {
 	if m.OtherLanguages == nil {
-		return m.GetMessage(defaultLanguage)
+		return m.GetMessage(DefaultLanguage)
 	}
 
 	message, ok := m.OtherLanguages[name]
 
 	if !ok {
-		return m.GetMessage(defaultLanguage)
+		return m.GetMessage(DefaultLanguage)
 	}
 
 	return message

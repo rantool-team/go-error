@@ -74,7 +74,7 @@ func (m *MessageSet) setMessageOnId(id Language, newMessage string) {
 		return
 	}
 
-	m.SetMessage(defaultLanguage, newMessage)
+	m.SetMessage(DefaultLanguage, newMessage)
 }
 
 func (m *MessageSet) setInAnotherLanguage(languageName string, newMessage string) {
