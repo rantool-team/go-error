@@ -1,4 +1,4 @@
-package error
+package errorstruct
 
 import (
 	"github.com/rantool-team/go-error/context"
@@ -7,6 +7,9 @@ import (
 
 var PREFIX_ERROR_APPEAR = "\n////////////////ERROR////////////////\n"
 var SUFIX_ERROR_APPEAR = "\n/////////////////////////////////////\n"
+
+var PREFIX_CONTEXT_APPEAR = "---------------------------------"
+var SUFIX_CONTEXT_APPEAR = "---------------------------------"
 
 type Error struct {
 	hasError          bool
@@ -32,10 +35,23 @@ func (e Error) montarErrorFormat() string {
 	res := PREFIX_ERROR_APPEAR
 	res += e.getErrorMessage()
 	res += "\n"
-	res += e.getDescription()
+	res += e.getContextString()
+	res += e.GetDescription()
 	res += SUFIX_ERROR_APPEAR
 
 	return res
+}
+
+func (e Error) getContextString() string {
+	if e.Context.Description != "" && e.Context.LocalDescription != "" {
+		res := PREFIX_CONTEXT_APPEAR
+		res += e.Description
+		res += "\n"
+		res += SUFIX_CONTEXT_APPEAR
+		return res
+	}
+
+	return ""
 }
 
 func (e Error) getErrorMessage() string {
@@ -46,7 +62,7 @@ func (e Error) getErrorMessage() string {
 	return e.Message
 }
 
-func (e Error) getDescription() string {
+func (e Error) GetDescription() string {
 	if e.HasDescriptionSet {
 		return e.DescriptionSet.GetMessage(e.Context.Language)
 	}
@@ -84,4 +100,14 @@ func (e Error) GetStatusCode() int {
 
 func (e *Error) SetStatusCode(statusCode int) {
 	e.StatusCode = statusCode
+}
+
+func (e *Error) AddMessageInOtherLanguage(languageName string, message string) {
+	e.HasMessageSet = true
+	e.MessageSet.SetMessage(languageName, message)
+}
+
+func (e *Error) AddDescriptionInOtherLanguage(languageName string, description string) {
+	e.HasDescriptionSet = true
+	e.DescriptionSet.SetMessage(languageName, description)
 }

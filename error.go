@@ -17,4 +17,7 @@ type Error interface {
 	SetStatusCode(statusCode int)
 
 	GetDescription() string
+
+	AddMessageInOtherLanguage(languageName string, message string)
+	AddDescriptionInOtherLanguage(languageName string, description string)
 }

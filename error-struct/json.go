@@ -1,4 +1,4 @@
-package error
+package errorstruct
 
 import "encoding/json"
 
@@ -15,7 +15,7 @@ func (e Error) getJsonResponse() JSONResponse {
 	return JSONResponse{
 		Status:      e.GetStatusCode(),
 		Message:     e.getErrorMessage(),
-		Description: e.getDescription(),
+		Description: e.GetDescription(),
 	}
 }
 
