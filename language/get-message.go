@@ -19,7 +19,7 @@ func (m MessageSet) HasThisLanguage(languageName string) bool {
 		return true
 	}
 
-	if m.OtherLanguages != nil {
+	if m.OtherLanguages == nil {
 		return false
 	}
 

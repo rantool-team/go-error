@@ -5,13 +5,13 @@ import (
 	"github.com/rantool-team/go-error/language"
 )
 
-func CreateError(messageInEnglish string, description string) Error {
+func CreateError(message string, description string) Error {
 	errorstruct.AddStatusCodeMultiples(StatusCodeNames)
 
-	err := errorstruct.Error{
-		Message:     messageInEnglish,
-		Description: description,
-	}
+	err := errorstruct.Error{}
+
+	err.AddMessageInOtherLanguage(language.DefaultLanguage, message)
+	err.AddDescriptionInOtherLanguage(language.DefaultLanguage, description)
 
 	err.SetLanguage(language.DefaultLanguage)
 
