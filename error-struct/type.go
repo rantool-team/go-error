@@ -10,8 +10,8 @@ import (
 var PREFIX_ERROR_APPEAR = "\n////////////////ERROR////////////////\n"
 var SUFIX_ERROR_APPEAR = "\n/////////////////////////////////////\n"
 
-var PREFIX_CONTEXT_APPEAR = "---------------------------------"
-var SUFIX_CONTEXT_APPEAR = "---------------------------------"
+var PREFIX_CONTEXT_APPEAR = "\n---------------------------------\n"
+var SUFIX_CONTEXT_APPEAR = "\n---------------------------------\n"
 
 type Error struct {
 	hasError          bool
@@ -36,7 +36,7 @@ func (e Error) Emit() {
 func (e Error) montarErrorFormat() string {
 	res := PREFIX_ERROR_APPEAR
 	res += e.getErrorMessage()
-	res += "\n" + e.retStatusCodeIfNotZero()
+	res += e.retStatusCodeIfNotZero()
 	res += "\n"
 	res += e.getContextString()
 	res += e.GetDescription()
@@ -49,7 +49,7 @@ func (e Error) retStatusCodeIfNotZero() string {
 	if e.StatusCode != 0 {
 		nameStatusCode := StatusCodeName.GetMessage(e.Context.Language)
 		statusInStr := strconv.Itoa(e.GetStatusCode())
-		return nameStatusCode + statusInStr
+		return "\n" + nameStatusCode + statusInStr
 	}
 
 	return ""
@@ -58,8 +58,9 @@ func (e Error) retStatusCodeIfNotZero() string {
 func (e Error) getContextString() string {
 	if e.Context.Description != "" && e.Context.LocalDescription != "" {
 		res := PREFIX_CONTEXT_APPEAR
-		res += e.Description
+		res += e.Context.Description
 		res += "\n"
+		res += e.Context.LocalDescription
 		res += SUFIX_CONTEXT_APPEAR
 		return res
 	}
