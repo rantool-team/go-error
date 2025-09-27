@@ -1,6 +1,6 @@
 # error-go
 Em GO existe já por padrão a interface error. O problema, na minha opnião, é que ela é muito limitada em projetos maiores. Por exemplo, para mim falta recursos como:
-- Definição dos locais: Seria interessante ter uma ferramenta de contexto, para indicar o contexto onde erro aparece.
+- Definição dos contexto: Seria interessante ter uma ferramenta de contexto, para indicar o contexto onde erro aparece.
 - Error handling: O formato err != nil, é interessante, porém pouco visual
 - Talvez seja inutil, mas em projetos maiores, seria interessante ter uma ferramenta para pluralizar os erros em diversas línguas. 
 - Retorno em JSON dos erros, seria também interessante, já ter nativamente, uma ferramente que controla os erros e retorna um JSON sobre o assunto, e ainda podendo indicando o status code. 
