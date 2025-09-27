@@ -5,10 +5,9 @@ import "github.com/rantool-team/go-error/context"
 type Error interface {
 	Error() string
 	Emit()
-	EmitInLanguage()
 
-	GetContext(localDescription string, description string) context.Context
-	SetContext()
+	GetContext() context.Context
+	SetContext(localDescription string, description string, language string)
 
 	HasError() bool
 
