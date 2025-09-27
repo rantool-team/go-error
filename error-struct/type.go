@@ -124,3 +124,7 @@ func (e *Error) AddDescriptionInOtherLanguage(languageName string, description s
 	e.HasDescriptionSet = true
 	e.DescriptionSet.SetMessage(languageName, description)
 }
+
+func (e *Error) SetLanguage(language string) {
+	e.Context.Language = language
+}

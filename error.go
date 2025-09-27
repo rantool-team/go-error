@@ -20,4 +20,6 @@ type Error interface {
 
 	AddMessageInOtherLanguage(languageName string, message string)
 	AddDescriptionInOtherLanguage(languageName string, description string)
+
+	SetLanguage(language string)
 }
