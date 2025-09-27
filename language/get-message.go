@@ -56,6 +56,10 @@ func (m MessageSet) getMessageOnId(id Language) string {
 }
 
 func (m MessageSet) getInAnotherLanguages(name string) string {
+	if m.OtherLanguages == nil {
+		return m.GetMessage(defaultLanguage)
+	}
+
 	message, ok := m.OtherLanguages[name]
 
 	if !ok {

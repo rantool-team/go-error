@@ -58,11 +58,12 @@ func (m *MessageSet) setMessageOnId(id Language, newMessage string) {
 
 func (m *MessageSet) setInAnotherLanguage(languageName string, newMessage string) {
 	m.initializeLanguageIfNotInitialized()
+
 	m.OtherLanguages[languageName] = newMessage
 }
 
 func (m *MessageSet) initializeLanguageIfNotInitialized() {
-	if m.OtherLanguages != nil {
+	if m.OtherLanguages == nil {
 		m.OtherLanguages = make(map[string]string)
 	}
 }
