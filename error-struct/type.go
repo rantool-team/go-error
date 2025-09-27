@@ -1,6 +1,8 @@
 package errorstruct
 
 import (
+	"strconv"
+
 	"github.com/rantool-team/go-error/context"
 	"github.com/rantool-team/go-error/language"
 )
@@ -34,12 +36,23 @@ func (e Error) Emit() {
 func (e Error) montarErrorFormat() string {
 	res := PREFIX_ERROR_APPEAR
 	res += e.getErrorMessage()
+	res += "\n" + e.retStatusCodeIfNotZero()
 	res += "\n"
 	res += e.getContextString()
 	res += e.GetDescription()
 	res += SUFIX_ERROR_APPEAR
 
 	return res
+}
+
+func (e Error) retStatusCodeIfNotZero() string {
+	if e.StatusCode != 0 {
+		nameStatusCode := StatusCodeName.GetMessage(e.Context.Language)
+		statusInStr := strconv.Itoa(e.GetStatusCode())
+		return nameStatusCode + statusInStr
+	}
+
+	return ""
 }
 
 func (e Error) getContextString() string {
