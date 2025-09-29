@@ -1,4 +1,4 @@
-### Uso
+# Uso
 
 O `go-error` é um pacote que disponibiliza uma interface de erro ([`Error`](./error.go)) que pode ser facilmente assimilada à interface `error` padrão do Go. Para gerar um erro, use o método [`CreateError`](./create-error.go):
 

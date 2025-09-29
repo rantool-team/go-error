@@ -1,4 +1,4 @@
-### Trabalhando com o Idioma Padrão
+# Trabalhando com o Idioma Padrão
 
 Você pode definir o idioma padrão do seu projeto, que será usado caso o contexto não tenha sido alterado. Para alterar o idioma padrão, use a função [`SetDefaultLanguage`](./set-language-default.go):
 

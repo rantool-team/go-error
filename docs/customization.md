@@ -1,4 +1,4 @@
-### Alterando Variáveis Úteis
+# Alterando Variáveis Úteis
 
 Você pode alterar as seguintes variáveis para aumentar a personalização (para alterar, você precisa usar o subpacote [`error-struct`](./error-struct/)):
 
