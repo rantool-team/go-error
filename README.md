@@ -18,3 +18,4 @@ Este projeto não visa substituir a interface `error` padrão do Go, mas sim est
 - [Trabalhando com o Idioma Padrão](./docs/default-language.md)
 - [Adicionando um Nome para o Código de Status](./docs/status-code-name.md)
 - [Alterando Variáveis Úteis](./docs/customization.md)
+- [ErrorsList](./docs/errorslist.md)
