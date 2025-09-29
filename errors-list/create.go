@@ -5,10 +5,6 @@ import (
 	"github.com/rantool-team/go-error/language"
 )
 
-var lastId = 0
-
-var errorsList = make(map[int]goerror.Error)
-
 func CreateErrorOnErrorsListAndReturnId(msg string, description string) int {
 	err := goerror.CreateError(msg, description)
 
