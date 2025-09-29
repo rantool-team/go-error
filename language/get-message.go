@@ -2,6 +2,10 @@ package language
 
 import "fmt"
 
+func (m MessageSet) GetMessageInDefaultLanguage() string {
+	return m.GetMessage(DefaultLanguage)
+}
+
 func (m MessageSet) GetMessage(languageName string) string {
 	if !m.HasThisLanguage(languageName) {
 		panicBecuseNotExistLanguage(languageName)
