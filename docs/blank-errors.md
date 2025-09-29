@@ -1,4 +1,4 @@
-### Erros Vazios
+# Erros Vazios
 
 Não aconselhamos retornar `nil` para a interface. Em vez disso, use o método [`CreateBlankError`](./blank-error.go):
 
