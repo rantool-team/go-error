@@ -22,4 +22,6 @@ type Error interface {
 	AddDescriptionInOtherLanguage(languageName string, description string)
 
 	SetLanguage(language string)
+
+	SetLocal(local context.Local)
 }

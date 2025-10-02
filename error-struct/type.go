@@ -129,3 +129,7 @@ func (e *Error) AddDescriptionInOtherLanguage(languageName string, description s
 func (e *Error) SetLanguage(language string) {
 	e.Context.Language = language
 }
+
+func (e *Error) SetLocal(local context.Local) {
+	e.Context.Local = local
+}
