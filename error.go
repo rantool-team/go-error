@@ -24,4 +24,6 @@ type Error interface {
 	SetLanguage(language string)
 
 	SetLocal(local context.Local)
+	GetJsonLocal() string
+	GetLocal() context.Local
 }
