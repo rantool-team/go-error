@@ -1,6 +1,10 @@
 package errorstruct
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/rantool-team/go-error/context"
+)
 
 var PREFIX_JSON = ""
 var IDENT_JSON = "  "
@@ -24,4 +28,15 @@ func (e Error) GetJSONFormatOfError() string {
 	resStr, _ := json.MarshalIndent(res, PREFIX_JSON, IDENT_JSON)
 
 	return string(resStr)
+}
+
+func (e Error) GetJsonLocal() string {
+	res := e.Context.Local
+	resStr, _ := json.MarshalIndent(res, PREFIX_JSON, IDENT_JSON)
+
+	return string(resStr)
+}
+
+func (e Error) GetLocal() context.Local {
+	return e.Context.Local
 }

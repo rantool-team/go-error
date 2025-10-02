@@ -23,6 +23,7 @@ type Error struct {
 	DescriptionSet    language.MessageSet
 	Context           context.Context
 	StatusCode        int
+	HasLocalDefined   bool
 }
 
 func (e Error) Error() string {
@@ -40,6 +41,7 @@ func (e Error) montarErrorFormat() string {
 	res += "\n"
 	res += e.getContextString()
 	res += e.GetDescription()
+	res += e.getLocalDefinition()
 	res += SUFIX_ERROR_APPEAR
 
 	return res
@@ -131,5 +133,6 @@ func (e *Error) SetLanguage(language string) {
 }
 
 func (e *Error) SetLocal(local context.Local) {
+	e.HasLocalDefined = true
 	e.Context.Local = local
 }
