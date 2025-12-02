@@ -2,6 +2,7 @@ package errorstruct
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/rantool-team/go-error/context"
 	"github.com/rantool-team/go-error/language"
@@ -15,8 +16,10 @@ var LocalDemonstrationLineChar = func(local context.Local) language.MessageSet {
 }
 
 var LocalDemonstrationFileModPackWorkspace = func(local context.Local) language.MessageSet {
+	var packages = strings.Join(local.Packages, "/")
+
 	return language.MessageSet{
-		Portuguese: fmt.Sprintf("Arquivo: %s, Pacote: %s, Modulo: %s, Worskpace: %s", local.File, local.Package, local.Module, local.Workspace),
-		English:    fmt.Sprintf("File: %s, Package: %s, Module: %s, Worskpace: %s", local.File, local.Package, local.Module, local.Workspace),
+		Portuguese: fmt.Sprintf("Arquivo: %s, Pacote: %s, Modulo: %s, Worskpace: %s", local.File, packages, local.Module, local.Workspace),
+		English:    fmt.Sprintf("File: %s, Package: %s, Module: %s, Worskpace: %s", local.File, packages, local.Module, local.Workspace),
 	}
 }

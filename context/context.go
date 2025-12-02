@@ -13,8 +13,8 @@ type Local struct {
 	StartChar int `json:"start-char"`
 	EndChar   int `json:"end-char"`
 
-	File      string `json:"file"`
-	Package   string `json:"package"`
-	Module    string `json:"module"`
-	Workspace string `json:"workspace"`
+	File      string   `json:"file"`
+	Packages  []string `json:"package"`
+	Module    string   `json:"module"`
+	Workspace string   `json:"workspace"`
 }
